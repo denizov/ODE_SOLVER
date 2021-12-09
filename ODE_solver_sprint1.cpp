@@ -4,7 +4,8 @@
 
 float function(float x, float y){
 
-    dydx=3*pow(x,2)+2*y; //dy/dx
+    dydx=3*pow(x,2)-2*y; //dy/dx
+    //dydx=2*x-5;
 
     return dydx;
 }
@@ -23,7 +24,7 @@ int main()
 
     if (xf>xi){
 
-    while(xi!=xf)
+    while(xf>xi)
     {
        yf=yi+function(xi,yi)*h;
        xi=xi+h;
@@ -39,7 +40,7 @@ int main()
     }
     }
 
-  std::cout<< "final y point is" << yf;
+  std::cout<< "final y point is " << yf;
 
     return 0;
 }
