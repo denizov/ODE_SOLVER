@@ -1,7 +1,7 @@
 #ifndef HEADER_H
 #define HEADER_H
 
-float xi,yi,xf,h,yf;
-float dydx;
-float function(float,float);
+double x_initial,y_initial,x_final,h,y_final;
+double dydx;
+double function(double x ,double y );
 #endif // HEADER_H
