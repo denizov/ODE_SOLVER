@@ -25,23 +25,16 @@ int main()
     if(step_size>abs(x_initial-x_final)){
         throw "Step size larger than the range!";
     }
-    std::unique_ptr<EulerSolver> euler;
-    
-    std::cout<<"Do you want to solve with explicit or implicit?"<<std::endl<<"Press e for explixit, press i for implicit"<<std::endl;
-    
-    std::cin>>choice;
-    
-    if(choice=='e'){
-        euler=std::make_unique<ExplicitEuler>(x_initial,x_final,y_initial,step_size);
-    }
-    else if(choice=='i'){
-        euler = std::make_unique<ImplicitEuler>(x_initial,x_final,y_initial,step_size);
-    }
-    else{
-        throw "Please choose e or i";
-    }
 
-    Solver(euler);
+    
+    
+    std::unique_ptr<EulerSolver> zbam = std::make_unique<ExplicitEuler>(x_initial,x_final,y_initial,step_size);
+    
+    Solver(zbam);
+    
+    std::unique_ptr<EulerSolver> bum = std::make_unique<ImplicitEuler>(x_initial,x_final,y_initial,step_size);
+    
+    Solver(bum);
 
     return 0;
 }
