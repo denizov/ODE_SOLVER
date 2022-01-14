@@ -28,6 +28,6 @@ double functionExplicit(double x, double y){
 double functionImplicit(double x, double y, double h){
     
    //double dydxNext=y+(2*x-5)*h;
-    double dydxNext=(y+(x*h))/(1-2*h); // Umplicit function for dydx=x+2*y;
+    double dydxNext=(y+(x*h))/(1-2*h); // Implicit function for dydx=x+2*y;
     return dydxNext;
 }
