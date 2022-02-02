@@ -6,7 +6,6 @@
 #include "Function.hpp"
 
 void Solver(std::unique_ptr<EulerSolver>& s){
-    std::cout<<"inside of the solver"<<std::endl;
     double solution=s->solve();
     std::cout<<"solution is "<<solution<<std::endl;
 }
