@@ -1,40 +1,75 @@
 #include <iostream>
+#include <memory>
 #include <cmath>
 #include "header.h"
 #include "EulerSolver.hpp"
 #include "Function.hpp"
 
 void Solver(std::unique_ptr<EulerSolver>& s){
-    std::cout<<"solverin ici"<<std::endl;
     double solution=s->solve();
-    std::cout<<"solution is"<<solution<<std::endl;
+    std::cout<<"solution is "<<solution<<std::endl;
 }
 
 int main()
 {
-
-    std::cout << "Please enter the initial point of x: "<<std::endl;
-    std::cin >> x_initial; //0
-    std::cout << "Please enter the initial point of y: "<<std::endl;
-    std::cin >> y_initial; //0
-    std::cout << "Please enter the final point of x: "<<std::endl;
-    std::cin >> x_final; //3
-    std::cout << "Please enter the step size: "<<std::endl;
-    std::cin >> step_size; //0.1   with these example values final point of y should be 6.
+    std::cout << "The function that has been used is x+2y. If you want to change the function look for the Function.cpp" << std::endl;
+    std::cout << "Do you want to use the test case" << std::endl << "Press y for yes, n for no" << std::endl;
     
-    if(step_size>abs(x_initial-x_final)){
-        throw "Step size larger than the range!";
+    std::cin >> choicefortest;
+    
+    if (choicefortest == 'y'){  //if statement for the test case (We want to use test case)
+        std::cout << "You are using the test case" << std::endl;
+        std::cout << "The initial point of x is 2" << std::endl;
+        x_initial = 2;
+        std::cout << "The initial point of y is 3" << std::endl;
+        y_initial = 3;
+        std::cout << "The final point of x is 2.5" << std::endl;
+        x_final = 2.5;
+        std::cout << "Step size is 0.1" << std::endl;
+        step_size = 0.1;
+        std::cout << "Final point of y should be 9.07536 for the explicit" <<std::endl;
+    
     }
 
+    else if (choicefortest == 'n'){  //else if statement for the test case (Do not want to use test case)
+    std::cout << "You are not using the test case. You are going to decide on your own parameters." << std::endl;
+    std::cout << "Please enter the initial point of x: "<<std::endl;
+    std::cin >> x_initial; 
+    std::cout << "Please enter the initial point of y: "<<std::endl;
+    std::cin >> y_initial;
+    std::cout << "Please enter the final point of x: "<<std::endl;
+    std::cin >> x_final; 
+    std::cout << "Please enter the step size: "<<std::endl;
+    std::cin >> step_size; 
+
+    if(step_size>fabs(x_initial-x_final)){
+        throw (std::runtime_error("Step size larger than the range!"));
+    }
+
+    }
     
+    else{ //else statement for the test case
+        throw (std::runtime_error("!!!!Please choose y or n!!!!"));
+        
+    }
     
-    std::unique_ptr<EulerSolver> zbam = std::make_unique<ExplicitEuler>(x_initial,x_final,y_initial,step_size);
+    std::unique_ptr<EulerSolver> euler;
     
-    Solver(zbam);
+    std::cout<<"Do you want to solve with explicit or implicit?"<<std::endl<<"Press e for explixit, press i for implicit"<<std::endl;
     
-    std::unique_ptr<EulerSolver> bum = std::make_unique<ImplicitEuler>(x_initial,x_final,y_initial,step_size);
+    std::cin>>choice;
     
-    Solver(bum);
+    if(choice=='e'){
+        euler=std::make_unique<ExplicitEuler>(x_initial,x_final,y_initial,step_size);
+    }
+    else if(choice=='i'){
+        euler = std::make_unique<ImplicitEuler>(x_initial,x_final,y_initial,step_size);
+    }
+    else{
+        throw (std::runtime_error("!!!!Please choose e or i!!!!"));
+    }
+
+    Solver(euler);
 
     return 0;
 }

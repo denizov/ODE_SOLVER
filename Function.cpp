@@ -9,7 +9,7 @@
 #include <iostream>
 #include <cmath>
 
-double functionExplicit(double x, double y){
+double functionExplicit(const double x, const double y){
    // double dydx=2*x-5; //this is our unit test to compare analytical solution and the output of the code. The integral of the equation is x^2-5x+c. If we take the initial point as 0, we can see that c is also 0.
     // For the final point of x = 3, integral equation (x^2-5x+c) becomes 3^2-5*3+0 = -6. According to analytical solution, for the initial
     //point of x is 0.0, initial point of y is 0.0, final point of x is 3 and the step size is 0.1. According to these numbers, final point of y should be -6.
@@ -28,6 +28,6 @@ double functionExplicit(double x, double y){
 double functionImplicit(double x, double y, double h){
     
    //double dydxNext=y+(2*x-5)*h;
-    double dydxNext=(y+(x*h))/(1-2*h); // Umplicit function for dydx=x+2*y;
+    double dydxNext=(y+(x*h))/(1-2*h); // Implicit function for dydx=x+2*y;
     return dydxNext;
 }
