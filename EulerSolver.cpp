@@ -38,7 +38,7 @@ double ExplicitEuler::solve(){
             while(_x_initial>=_x_final+_step_size)
     {
         _y_final=_y_initial-functionExplicit(_x_initial,_y_initial)*_step_size;
-        std::cout<<"explicit y's: "<<_y_final<<std::endl;
+      //  std::cout<<"explicit y's: "<<_y_final<<std::endl;
         _x_initial=_x_initial-_step_size;
         _y_initial=_y_final;
     }
