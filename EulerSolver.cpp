@@ -25,10 +25,12 @@ ImplicitEuler::ImplicitEuler(double xi,double xf,double yi,double h): EulerSolve
 double ExplicitEuler::solve(){
     if (_x_final>_x_initial){
         //std::cout<<"Inside Explicit Euler solve"<<std::endl;
-    while(_x_final+(_step_size/10)>=_x_initial+_step_size)
+
+    while(_x_final+(_step_size*0.1)>=_x_initial+_step_size)
     {
         _y_final=_y_initial+functionExplicit(_x_initial,_y_initial)*_step_size;
-        std::cout<<"explicit y's: "<<_y_final<<std::endl;
+        //std::cout<<"explicit y's: "<<_y_final<<std::endl;
+
         _x_initial=_x_initial+_step_size;
         _y_initial=_y_final;
         //std::cout<<_x_initial<<std::endl;
@@ -38,7 +40,7 @@ double ExplicitEuler::solve(){
             while(_x_initial>=_x_final+_step_size)
     {
         _y_final=_y_initial-functionExplicit(_x_initial,_y_initial)*_step_size;
-        std::cout<<"explicit y's: "<<_y_final<<std::endl;
+
         _x_initial=_x_initial-_step_size;
         _y_initial=_y_final;
     }
